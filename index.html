@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#050712" />
+  <title>CHRONOVERSE — The Museum of Lost Futures</title>
+  <meta name="description" content="Chronoverse: The Museum of Lost Futures — an immersive 3D-inspired timeline experience." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <canvas id="spaceCanvas" aria-hidden="true"></canvas>
+
+  <div id="cursorGlow" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <div id="intro" class="intro">
+    <div class="intro-core" aria-hidden="true">
+      <div class="ring ring-1"></div>
+      <div class="ring ring-2"></div>
+      <div class="ring ring-3"></div>
+      <div class="core-light"></div>
+    </div>
+
+    <div class="intro-copy">
+      <p class="eyebrow">ARCHIVE NODE // 2099.08.31</p>
+      <h1>CHRONOVERSE</h1>
+      <p class="subtitle">The Museum of Lost Futures</p>
+      <p class="intro-line">The future has already happened.<br><span>You are here to choose which one survives.</span></p>
+      <button id="enterBtn" class="primary-btn">
+        <span>ENTER THE TIMELINE</span>
+        <b>↗</b>
+      </button>
+      <p class="microcopy">Move your pointer • Scroll • Explore the fragments</p>
+    </div>
+  </div>
+
+  <div id="portalTransition" class="portal-transition" aria-hidden="true">
+    <div class="portal-vortex"></div>
+  </div>
+
+  <main id="experience" class="experience is-hidden">
+    <header class="topbar">
+      <a href="#" class="brand" id="brandHome">
+        <span class="brand-mark"></span>
+        <span>
+          <strong>CHRONOVERSE</strong>
+          <small>LOST FUTURES ARCHIVE</small>
+        </span>
+      </a>
+      <nav>
+        <button data-scroll="#worlds">TIMELINES</button>
+        <button data-scroll="#archive">ARCHIVE</button>
+        <button data-scroll="#ending">THE CORE</button>
+      </nav>
+      <button id="soundBtn" class="icon-btn" aria-label="Toggle sound">SOUND: OFF</button>
+    </header>
+
+    <section class="hero section">
+      <div class="hero-grid"></div>
+      <div class="planet planet-a"></div>
+      <div class="planet planet-b"></div>
+
+      <div class="hero-copy reveal">
+        <p class="eyebrow">TEMPORAL MUSEUM // SECTOR 07</p>
+        <h2>FIVE FUTURES.<br><span>ONE SURVIVES.</span></h2>
+        <p class="lede">Travel through abandoned possibilities of Earth. Recover their Time Fragments. Reach the Chrono Core and decide what humanity becomes.</p>
+        <div class="hero-actions">
+          <button class="primary-btn" data-scroll="#worlds"><span>BEGIN EXPEDITION</span><b>↓</b></button>
+          <button class="ghost-btn" id="randomWorld">RANDOM TIMELINE</button>
+        </div>
+      </div>
+
+      <div class="hero-orbit reveal" aria-hidden="true">
+        <div class="orbit-ring o1"></div>
+        <div class="orbit-ring o2"></div>
+        <div class="orbit-ring o3"></div>
+        <div class="orbital-core">
+          <span>05</span>
+          <small>LOST<br>FUTURES</small>
+        </div>
+        <i class="satellite s1"></i>
+        <i class="satellite s2"></i>
+        <i class="satellite s3"></i>
+      </div>
+
+      <div class="scroll-cue">SCROLL TO DESCEND <span>⌄</span></div>
+    </section>
+
+    <section id="worlds" class="worlds section">
+      <div class="section-heading reveal">
+        <p class="eyebrow">01 // TIMELINE VAULT</p>
+        <h3>Choose a future to enter.</h3>
+        <p>Each timeline contains a fragment of the Chrono Core. Visit all four accessible worlds to unlock the final archive.</p>
+      </div>
+
+      <div class="world-stack">
+        <article class="world-card solar reveal" data-world="0">
+          <div class="world-number">01</div>
+          <div class="world-visual">
+            <div class="sun"></div>
+            <div class="floating-city">
+              <i></i><i></i><i></i><i></i><i></i>
+            </div>
+          </div>
+          <div class="world-content">
+            <div>
+              <span class="world-year">YEAR 2150</span>
+              <h4>SOLAR EDEN</h4>
+              <p>Nature and technology evolved together. Cities breathe, towers harvest sunlight, and forests climb into the clouds.</p>
+            </div>
+            <button class="enter-world">ENTER WORLD <span>↗</span></button>
+          </div>
+        </article>
+
+        <article class="world-card neon reveal" data-world="1">
+          <div class="world-number">02</div>
+          <div class="world-visual">
+            <div class="neon-city">
+              <i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+            <div class="scanline"></div>
+          </div>
+          <div class="world-content">
+            <div>
+              <span class="world-year">YEAR 2197</span>
+              <h4>NEON ASCENT</h4>
+              <p>A civilization built vertically. Holographic streets, airborne transit and cities that never sleep.</p>
+            </div>
+            <button class="enter-world">ENTER WORLD <span>↗</span></button>
+          </div>
+        </article>
+
+        <article class="world-card ocean reveal" data-world="2">
+          <div class="world-number">03</div>
+          <div class="world-visual">
+            <div class="bubbles"></div>
+            <div class="ocean-towers">
+              <i></i><i></i><i></i><i></i>
+            </div>
+          </div>
+          <div class="world-content">
+            <div>
+              <span class="world-year">YEAR 2240</span>
+              <h4>ABYSSAL EARTH</h4>
+              <p>The continents vanished beneath the ocean. Humanity adapted in luminous cities under the waves.</p>
+            </div>
+            <button class="enter-world">ENTER WORLD <span>↗</span></button>
+          </div>
+        </article>
+
+        <article class="world-card machine reveal" data-world="3">
+          <div class="world-number">04</div>
+          <div class="world-visual">
+            <div class="machine-eye"></div>
+            <div class="circuit-lines"></div>
+          </div>
+          <div class="world-content">
+            <div>
+              <span class="world-year">YEAR 2301</span>
+              <h4>MACHINE DAWN</h4>
+              <p>An intelligence designed the planet anew. Every structure thinks. Every road predicts where you are going.</p>
+            </div>
+            <button class="enter-world">ENTER WORLD <span>↗</span></button>
+          </div>
+        </article>
+
+        <article class="world-card locked reveal" data-world="4" id="finalWorldCard">
+          <div class="lock-layer">
+            <div class="lock-symbol">◇</div>
+            <p>FINAL TIMELINE ENCRYPTED</p>
+            <small>RECOVER 4 TIME FRAGMENTS</small>
+          </div>
+          <div class="world-number">05</div>
+          <div class="world-visual forgotten-visual">
+            <div class="eclipse"></div>
+          </div>
+          <div class="world-content">
+            <div>
+              <span class="world-year">YEAR ????</span>
+              <h4>THE FORGOTTEN EARTH</h4>
+              <p>The timeline that should not exist.</p>
+            </div>
+            <button class="enter-world">LOCKED</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="archive" class="archive section">
+      <div class="section-heading reveal">
+        <p class="eyebrow">02 // TEMPORAL ARCHIVE</p>
+        <h3>Recovered fragments.</h3>
+      </div>
+
+      <div class="fragment-console reveal">
+        <div class="console-left">
+          <span class="console-label">CHRONO CORE STATUS</span>
+          <div class="fragment-ring" id="fragmentRing">
+            <div class="fragment-center">
+              <strong id="fragmentCount">0/4</strong>
+              <small>FRAGMENTS</small>
+            </div>
+          </div>
+        </div>
+        <div class="console-right">
+          <div class="fragment-row" data-fragment="0"><i></i><span>Solar Eden</span><b>NOT RECOVERED</b></div>
+          <div class="fragment-row" data-fragment="1"><i></i><span>Neon Ascent</span><b>NOT RECOVERED</b></div>
+          <div class="fragment-row" data-fragment="2"><i></i><span>Abyssal Earth</span><b>NOT RECOVERED</b></div>
+          <div class="fragment-row" data-fragment="3"><i></i><span>Machine Dawn</span><b>NOT RECOVERED</b></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ending" class="ending section">
+      <div class="ending-glow"></div>
+      <div class="ending-copy reveal">
+        <p class="eyebrow">03 // THE CHRONO CORE</p>
+        <h3>Your decision becomes history.</h3>
+        <p>When every fragment is recovered, the final timeline will open. What survives is no longer predetermined.</p>
+        <div class="choices">
+          <button class="choice" data-choice="nature"><span>01</span><strong>RESTORE NATURE</strong><small>Return Earth to a living world.</small></button>
+          <button class="choice" data-choice="ai"><span>02</span><strong>BUILD WITH AI</strong><small>Create an intelligence-human civilization.</small></button>
+          <button class="choice" data-choice="stars"><span>03</span><strong>EXPLORE THE STARS</strong><small>Leave Earth and become interstellar.</small></button>
+        </div>
+        <p id="endingMessage" class="ending-message">THE CORE IS WAITING.</p>
+      </div>
+    </section>
+
+    <footer>
+      <span>CHRONOVERSE // THE MUSEUM OF LOST FUTURES</span>
+      <span>AN IMMERSIVE WEB EXPERIENCE</span>
+    </footer>
+  </main>
+
+  <aside id="worldModal" class="world-modal" aria-hidden="true">
+    <button id="closeWorld" class="modal-close">×</button>
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+      <p class="eyebrow" id="modalIndex">TIMELINE 01 / 05</p>
+      <h2 id="modalTitle">SOLAR EDEN</h2>
+      <p id="modalText"></p>
+      <div class="modal-stats">
+        <div><span>ERA</span><strong id="modalYear">2150</strong></div>
+        <div><span>STATUS</span><strong>UNSTABLE</strong></div>
+        <div><span>FRAGMENT</span><strong id="modalFragment">DETECTED</strong></div>
+      </div>
+      <button id="collectFragment" class="primary-btn"><span>RECOVER TIME FRAGMENT</span><b>◇</b></button>
+    </div>
+  </aside>
+
+  <div id="toast" class="toast" role="status"></div>
+
+  <div class="hud">
+    <span>TIMELINE <b id="hudTimeline">00 / 05</b></span>
+    <span>FRAGMENTS <b id="hudFragments">0 / 4</b></span>
+    <span>CORE <b id="hudCore">LOCKED</b></span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
